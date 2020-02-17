@@ -15,7 +15,11 @@ class ButtonPurple extends StatelessWidget {
         ));
       },
       child: Container(
-        margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(
+          top: 30.0,
+          left: 20.0,
+          right: 20.0,
+        ),
         height: 50.0,
         width: 180.0,
         decoration: BoxDecoration(
@@ -29,7 +33,11 @@ class ButtonPurple extends StatelessWidget {
         child: Center(
           child: Text(
             buttonText,
-            style: TextStyle(fontSize: 18.0, fontFamily: "Lato", color: Colors.white),
+            style: TextStyle(
+              fontSize: 18.0,
+              fontFamily: "Lato",
+              color: Colors.white,
+            ),
           ),
         ),
       ),
