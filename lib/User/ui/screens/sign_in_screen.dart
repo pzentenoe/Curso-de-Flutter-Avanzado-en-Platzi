@@ -14,11 +14,12 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   UserBloc _userBloc;
+  double screenWidth;
 
   @override
   Widget build(BuildContext context) {
     _userBloc = BlocProvider.of(context);
-
+    screenWidth = MediaQuery.of(context).size.width;
     return _handleCurrentSession();
   }
 
@@ -39,17 +40,22 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          GradientBack("", null),
+          GradientBack(height: null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Welcome \n this is your Travel App",
-                style: TextStyle(
-                  fontSize: 37.0,
-                  fontFamily: "Lato",
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              Flexible(
+                child: Container(
+                  width: screenWidth,
+                  child: Text(
+                    "Welcome \n this is your Travel App",
+                    style: TextStyle(
+                      fontSize: 37.0,
+                      fontFamily: "Lato",
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
               ButtonGreen(
