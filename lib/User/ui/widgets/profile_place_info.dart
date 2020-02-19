@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
 
-import '../../../place.dart';
+import '../../../Place/model/place.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
   Place place;
@@ -21,19 +21,19 @@ class ProfilePlaceInfo extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 10.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Text(
-            this.place.where,
+            this.place.name,
             style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 0.4), fontFamily: 'Lato', fontSize: 12.0, fontWeight: FontWeight.bold),
           ),
           Text(
-            this.place.type,
+            this.place.description,
             style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 0.4), fontFamily: 'Lato', fontSize: 12.0, fontWeight: FontWeight.bold),
           )
         ]));
 
     final steps = Text(
-      'Steps ${this.place.steps}',
+      'Steps ${this.place.likes}',
       style: TextStyle(fontFamily: 'Lato', fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.amber),
     );
 
