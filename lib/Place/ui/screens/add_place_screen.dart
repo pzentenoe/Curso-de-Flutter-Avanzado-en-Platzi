@@ -30,7 +30,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   width: 45.0,
                   child: IconButton(
                     icon: Icon(Icons.keyboard_arrow_left),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
               ),
