@@ -24,6 +24,7 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
       tooltip: "Fav",
       onPressed: onPressedFav,
       child: Icon(Icons.favorite_border),
+      heroTag: null,
     );
   }
 }
