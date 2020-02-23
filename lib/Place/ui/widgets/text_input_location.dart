@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TitleInputLocation extends StatelessWidget {
+class TextInputLocation extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final IconData iconData;
 
-  TitleInputLocation({
+  TextInputLocation({
     Key key,
     @required this.hintText,
     @required this.controller,
