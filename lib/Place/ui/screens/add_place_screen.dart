@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/text_input_location.dart';
+import 'package:platzi_trips_app/widgets/button_purple.dart';
 import 'package:platzi_trips_app/widgets/gradient_back.dart';
 import 'package:platzi_trips_app/widgets/text_input.dart';
 import 'package:platzi_trips_app/widgets/title_header.dart';
@@ -65,7 +66,8 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: "assets/img/sunset.jpeg", //widget.image.path,
+                    pathImage: "assets/img/sunset.jpeg",
+                    //widget.image.path,
                     iconData: Icons.camera_alt,
                     width: 350.0,
                     height: 250.0,
@@ -91,8 +93,23 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
-                  child: TextInputLocation(hintText: "Add Location", iconData: Icons.location_on),
-                )
+                  child: TextInputLocation(
+                    hintText: "Add Location",
+                    iconData: Icons.location_on,
+                  ),
+                ),
+                Container(
+                  width: 70.0,
+                  child: ButtonPurple(
+                    buttonText: "Add Place",
+                    onPressed: (){
+                      //1 Firebase Storage
+                      //Devuelve URL
+                      //Cloud Firestore Insertar objeto place
+
+                    },
+                  ),
+                ),
               ],
             ),
           )
