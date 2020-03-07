@@ -69,7 +69,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: "assets/img/sunset.jpeg",
+                    pathImage: widget.image.path,
                     //widget.image.path,
                     iconData: Icons.camera_alt,
                     width: 350.0,
@@ -109,11 +109,13 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                       //1 Firebase Storage
                       //Devuelve URL
                       //Cloud Firestore Insertar objeto place
-                      _userBloc.updatePlaceData(Place(
+                      _userBloc
+                          .updatePlaceData(Place(
                         name: _controllerTitlePlace.text,
                         description: _controllerDescriptionPlace.text,
                         likes: 0,
-                      )).whenComplete((){
+                      ))
+                          .whenComplete(() {
                         print("Termino");
                         Navigator.pop(context);
                       });
