@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
@@ -58,9 +59,9 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
               ),
               Flexible(
                   child: Container(
-                padding: EdgeInsets.only(top: 45.0, left: 20.0, right: 10.0),
-                child: TitleHeader(title: "Add a new Place"),
-              ))
+                    padding: EdgeInsets.only(top: 45.0, left: 20.0, right: 10.0),
+                    child: TitleHeader(title: "Add a new Place"),
+                  ))
             ],
           ),
           Container(
@@ -107,26 +108,36 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   child: ButtonPurple(
                     buttonText: "Add Place",
                     onPressed: () {
-
-
                       _userBloc.currentUser.then((FirebaseUser user) {
                         if (user != null) {
                           //1 Subir archivo Firebase Storage
                           //Devuelve URL
+                          String uid = user.uid;
+                          String path = "${uid}/${DateTime.now().toString()}.jpg";
+                          _userBloc.uploadFile(path, widget.image).then((StorageUploadTask storageUploadTask){
+                            storageUploadTask.onComplete.then((StorageTaskSnapshot snapshot){
+                              snapshot.ref.getDownloadURL().then((urlImage){
+                                print("URL IMAGE ${urlImage}");
+
+                                //Cloud Firestore Insertar objeto place
+                                _userBloc
+                                    .updatePlaceData(Place(
+                                  name: _controllerTitlePlace.text,
+                                  urlImage: urlImage,
+                                  description: _controllerDescriptionPlace.text,
+                                  likes: 0,
+                                ))
+                                    .whenComplete(() {
+                                  print("Termino");
+                                  Navigator.pop(context);
+                                });
+                              });
+                            });
+                          });
                         }
                       });
 
-                      //Cloud Firestore Insertar objeto place
-                      _userBloc
-                          .updatePlaceData(Place(
-                        name: _controllerTitlePlace.text,
-                        description: _controllerDescriptionPlace.text,
-                        likes: 0,
-                      ))
-                          .whenComplete(() {
-                        print("Termino");
-                        Navigator.pop(context);
-                      });
+
                     },
                   ),
                 ),
