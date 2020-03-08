@@ -33,7 +33,14 @@ class CloudFirestoreApi {
       'name': place.name,
       'description': place.description,
       'likes': place.likes,
-      'userOwner': _userRef //reference
+      'userOwner': _userRef, //o seria asi _db.document("${this.USERS}/${user.uid}")
+    }).then((DocumentReference dr) {
+      dr.get().then((DocumentSnapshot snapshot) {
+        //DocumentReference refUsers = _db.collection(USERS).document(user.uid);
+        _userRef.updateData({
+          'myPlaces': FieldValue.arrayUnion([_db.document("${PLACES}/${snapshot.documentID}")])
+        });
+      });
     });
 
 /*   await _auth.currentUser().then((FirebaseUser user){
